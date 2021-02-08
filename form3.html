@@ -1,0 +1,103 @@
+<html> 
+    <head> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {  
+            $("#but_val").click(function () {  
+                var name = $('#nameID').val();
+                var gender = $('#genderID').val();
+                var email = $('#mailID').val();
+                var status = $('#statusID').val();
+                var jsonDATA = {'Fname' : name, 'Gender' : gender, 'Email' : email, 'Status' : status};
+
+                $.ajax({  
+                    url: 'http://gorest.co.in/public-api/users',  
+                    type: 'POST',  
+                    dataType: 'json',  
+                    data: JSON.stringify({jsonDATA }),
+                   success: function(data){
+                   console.log('success' , data);
+                       }
+                });  
+            });  
+        });  
+</script>  
+  
+    </head> 
+  
+    <body> 
+      
+        <form name="RegForm" action="" onsubmit="return validaton()" method="get"> 
+            <p>Name: <input type="text" 
+                             name="Name" /></p> 
+            <br /> 
+            <p>Gender: <input type="text" 
+                                name="Gender" /> 
+          </p> 
+            <br /> 
+            <p>E-mail: <input type="text" 
+                             name="EMail" /></p> 
+            <br /> 
+            <p>Status: <input type="text" 
+                          name="Status" /></p> 
+            <br /> 
+            <br /> 
+            
+            <p> 
+                <input type="submit" 
+                       value="send" name="Submit" /> 
+            </p> 
+        </form> 
+
+        <script> 
+            function validaton() { 
+                var name =  
+                    document.forms["RegForm"]["Name"]; 
+                var gender =  
+                    document.forms["RegForm"]["Gender"]; 
+                var email =  
+                    document.forms["RegForm"]["EMail"]; 
+                
+                var status =  
+                    document.forms["RegForm"]["Status"]; 
+               
+  
+                if (name.value == "") { 
+
+                    window.alert("Please enter your name."); 
+                    name.focus(); 
+                    return false; 
+                } 
+  
+
+                if (gender.value == "") { 
+                    window.alert("Please enter your gender."); 
+                    gender.focus(); 
+                    return false; 
+                } 
+  
+                if (email.value == "") { 
+                    window.alert( 
+                      "Please enter a valid e-mail."); 
+                    email.focus(); 
+                    return false; 
+                } 
+  
+                if (status.value == "") { 
+                    window.alert( 
+                      "Please enter your status."); 
+                    status.focus(); 
+                    return false; 
+                } 
+  
+                alert("Submitted");
+                return true; 
+                
+                
+               
+            } 
+        </script> 
+
+    </body> 
+
+</html> 
